@@ -1,0 +1,101 @@
+{% extends "home/base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block"><img src="{% static 'img/index.jpeg' %}" class="salma"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    {% if 'warning' in message.tags %}
+                                        <div class="alert alert-danger" role="alert">
+                                            {{message}}
+                                        </div>
+                                    {% else %}
+                                        <div class="alert alert-success" role="alert">
+                                            {{message}}
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    <div class="text-center">
+                                        <h1 class="h3 text-gray-900 mb-2">BNM-AGRE</h1>
+                                        <p class="mb-4">Bonne appétit à tous
+                                    </div>
+                                    <form action="{% url 'create_commande' %}" method="post" enctype="multipart/form-data" class="user">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Repas</label>
+                                            <select name="repas" class="form-control" id="exampleFormControlSelect1">
+                                                <option>P-DJ</option>
+                                                <option>DJ</option>
+                                              </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Barcode</label>
+                                            <input name="barcode_number" type="password" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Le barcode de l'employée">
+                                        </div>
+                                        <button class="btn btn-primary btn-user btn-block">
+                                            Valider la commande
+                                        </button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Les commandes d'aujourd'hui</h6>
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable", width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Identifiant</th>
+                            <th>Commandé par</th>
+                            <th>Repas</th>
+                            <th>Date</th>
+                            <th>Prix</th>
+                        </tr>
+                    </thead>
+                    <!--<tfoot>
+                        <tr>
+                           
+                        </tr>
+                    </tfoot>-->
+                    <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{commande.id_commande}}</td>
+                            <td>{{commande.user.user.first_name}} {{commande.user.user.last_name}}</td>
+                            <td>{{commande.repas.nom}}</td>
+                            <td>{{commande.orderDate}}</td>
+                            <td>{{commande.repas.prix}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

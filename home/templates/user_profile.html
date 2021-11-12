@@ -1,0 +1,133 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-3">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">{{customer.user.first_name}} {{customer.user.last_name}}</h5>
+			<hr>
+			{% if customer.photo %}
+			<img class="profile-pic" src="{{customer.photo.url}}">
+			{% else %}
+			<img class="profile-pic" src="">
+			{% endif %}
+		</div>
+	</div>
+	</div>
+    <div class="col-md-3">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Informations</h5>
+			<hr>
+			<p class="text-info">Email : {{customer.user.email}}</p>
+			<p class="text-info">N° compte : {{customer.n_compte}}</p>
+		</div>
+	</div>
+	</div>
+    <div class="col-md-6">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Barcode</h5>
+			<hr>
+			<img class="profile-pic" src="{{customer.barcode.url}}">
+		</div>
+	</div>
+</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Total des commandes</h5>
+			<hr>
+			<h1 class="text-dark" style="text-align: center;padding: 10px">{{order_count}}</h1>
+		</div>
+	</div>
+</div>
+
+    <div class="col-md">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Les commandes de ce mois</h5>
+			<hr>
+			<h1 class="text-dark" style="text-align: center;padding: 10px">{{order_count_this_month}}</h1>
+            <h4 class="text-warning" style="text-align: center;padding: 10px">{{pdj_order_count_this_month}} Petit déjeuner{% if pdj_order_count_this_month >= 2 %}s{% endif %}</h4>
+            <h4 class="text-warning" style="text-align: center;padding: 10px">{{dj_order_count_this_month}} Déjeuner{% if dj_order_count_this_month >= 2 %}s{% endif %}</h4>
+		</div>
+	</div>
+</div>
+
+    <div class="col-md">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">{{customer.user.first_name}} doit payer ce mois-ci</h5>
+			<hr>
+			<h1 class="text-dark" style="text-align: center;padding: 10px">{{pay_this_month}} MRU</h1>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+	<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Actions</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'update_user' customer.barcode_number %}">Modifier l'utilisateur</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'delete_user' customer.barcode_number %}">Supprimer l'utilisateur</a>
+
+		</div>
+	</div>
+</div>
+</div>
+<br>
+
+</div>
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<h4 class="h4 mb-2 text-gray-800">Filtrer les commandes de {{customer.user.first_name}} {{customer.user.last_name}}</h4>
+			<form method="get">
+                {{myFilter.form.as_p}}
+		    <button class="btn btn-primary" type="submit">Filtrer</button>
+		  </form>
+		</div>
+	</div>
+</div>
+<br>
+
+<div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				 <thead>
+                 <tr>
+					<th>Repas</th>
+					<th>Prix</th>
+					<th>Date</th>
+					<th>Part employee</th>
+					<th>Part banque</th>
+				</tr>
+                </thead>
+				{% for order in orders %}
+
+				<tr>
+					<td>{{order.repas}}</td>
+					<td>{{order.repas.prix}}</td>
+					<td>{{order.orderDate}}</td>
+					<td>{{order.partUser}}</td>
+					<td>{{order.partBank}}</td>
+				</tr>
+				{% endfor %}
+
+			</table>
+
+	</div>
+</div>
+</div>
+            </div>
+            <!-- End of Main Content -->
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "home/base.html" %}
+{% block content %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Gestion des utilisateurs</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Les utilisateurs</h6>
+                        </div>
+                        {% for message in messages %}
+							<div class="alert alert-success" role="alert">
+                                {{message}}
+                            </div>
+					    {% endfor %}
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Employée</th>
+                                            <th>Matricule</th>
+                                            <th>Barcode</th>
+                                            <th>Fonction</th>
+                                            <th>Direction</th>
+                                            <th>N° Compte</th>
+                                            <th>Modifier</th>
+                                            <th>Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    <!--<tfoot>
+                                        <tr>
+                                           
+                                        </tr>
+                                    </tfoot>-->
+                                    <tbody>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td><a class="text-primary" href="{% url 'user_profile' user.barcode_number %}">{{user.user.first_name}} {{user.user.last_name}}</a></td>
+                                            <td>{{user.is_employee}}</td>
+                                            <td>{{user.matricule}}</td>
+                                            <td>{{user.barcode_number}}</td>
+                                            <td>{{user.fonction}}</td>
+                                            <td>{{user.direction}}</td>
+                                            <td>{{user.n_compte}}</td>
+                                            <td><a class="btn btn-info btn-circle btn-sm" href="{% url 'update_user' user.barcode_number %}"><i class="fas fa-edit"></i></a></td>
+                                            <td><a class="btn btn-danger btn-circle btn-sm" href="{% url 'delete_user' user.barcode_number %}"><i class="fas fa-trash"></i></a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "home/base.html" %}
+{% block content %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Suppression des commandes</h1>
+                    <p>Etes-vous sure de supprimer la commande "{{item}}"</p>
+                    <form action="{% url 'delete_commande' item.id_commande %}" method="POST">
+                        {% csrf_token %}
+                        <a href="{% url 'commandes' %}">Annuler</a>
+                        <input type="submit" name="Confirmer">
+                    </form>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+{% endblock %}

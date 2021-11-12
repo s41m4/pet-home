@@ -1,0 +1,75 @@
+{% extends "home/base.html" %}
+{% block content %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                     
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Gestion des commandes</h1>
+
+                    <!-- DataTales Example -->
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card card-body">
+                                <h4 class="h4 mb-2 text-gray-800">Filtrer les commandes</h4>
+                                <form method="get">
+                                    {{myFilter.form.as_p}}
+                                <button class="btn btn-primary" type="submit">Filtrer</button>
+                            </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Les commandes</h6>
+                        </div>
+                        {% for message in messages %}
+							<div class="alert alert-danger" role="alert">
+                                {{message}}
+                            </div>
+					    {% endfor %}
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable", width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Identifiant</th>
+                                            <th>Commandé par</th>
+                                            <th>N° compte</th>
+                                            <th>Repas</th>
+                                            <th>Date</th>
+                                            <th>Prix</th>
+                                            <th>Part employée</th>
+                                            <th>Part banque</th>
+                                        </tr>
+                                    </thead>
+                                    <!--<tfoot>
+                                        <tr>
+                                           
+                                        </tr>
+                                    </tfoot>-->
+                                    <tbody>
+                                    {% for commande in commandes %}
+                                        <tr>
+                                            <td>{{commande.id_commande}}</td>
+                                            <td>{{commande.user.user.first_name}} {{commande.user.user.last_name}}</td>
+                                            <td>{{commande.user.n_compte}}</td>
+                                            <td>{{commande.repas.nom}}</td>
+                                            <td>{{commande.orderDate}}</td>
+                                            <td>{{commande.repas.prix}}</td>
+                                            <td>{{commande.partUser}}</td>
+                                            <td>{{commande.partBank}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}
