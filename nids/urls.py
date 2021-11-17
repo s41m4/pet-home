@@ -29,6 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('/', include('home.urls')),
     path('', include(router.urls)),
+    #path('signup/', views.signup, name='signup'),
+
 ]
 
 if settings.DEBUG:

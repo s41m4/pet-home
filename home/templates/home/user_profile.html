@@ -1,0 +1,98 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-4">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">{{customer.user.first_name}} {{customer.user.last_name}}</h5>
+			<hr>
+			{% if customer.photo %}
+			<img class="profile-pic" src="{{customer.photo.url}}">
+			{% else %}
+			<img class="profile-pic" src="">
+			{% endif %}
+		</div>
+	</div>
+	</div>
+    <div class="col-md-4">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Informations</h5>
+			<hr>
+			<p class="text-info">Email : {{customer.user.email}}</p>
+			<p class="text-info">N° compte :</p>
+		</div>
+	</div>
+	</div>
+    <div class="col-md-4">
+		<div class="card border-left-primary shadow h-100 py">
+		<div class="card card-body">
+			<h5 style="text-align: center;">Actions</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" data-toggle="modal" data-target="#profileModal">Update Information</a>
+		</div>
+	</div>
+	</div>
+
+</div>
+<br>
+
+</div>
+
+
+<br>
+
+<br>
+
+</div>
+
+<br>
+
+<br>
+
+<div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				 <thead>
+                 <tr>
+					<th>Pet</th>
+					<th>Meal</th>
+					<th>Date</th>
+					<th>Medicament</th>
+				</tr>
+                </thead>
+
+				<tr>
+					<td>kkkk</td>
+					<td>meal1</td>
+					<td>12/12/2021 12:30 PM</td>
+					<td>12/12/2021 13:00 PM</td>
+				</tr>
+				<tr>
+					<td>kkkk</td>
+					<td>meal2</td>
+					<td>13/12/2021 12:30 PM</td>
+					<td>13/12/2021 13:00 PM</td>
+				</tr>
+				<tr>
+					<td>kkkk</td>
+					<td>meal3</td>
+					<td>14/12/2021 12:30 PM</td>
+					<td>14/12/2021 13:00 PM</td>
+				</tr>
+				<tr>
+					<td>kkkk</td>
+					<td>meal4</td>
+					<td>15/12/2021 12:30 PM</td>
+					<td>15/12/2021 13:00 PM</td>
+				</tr>
+
+			</table>
+
+	</div>
+</div>
+</div>
+            </div>
+            <!-- End of Main Content -->
+{% endblock %}

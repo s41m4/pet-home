@@ -5,6 +5,7 @@ from .models import *
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm
 
 class ProfileForm(ModelForm):
     class Meta:
@@ -46,10 +47,20 @@ class UserProfileForm(forms.ModelForm):
         model = Profile
         fields = ['photo']
 
-
 def form_validation_error(form):
     msg = ""
     for field in form:
         for error in field.errors:
             msg += "%s: %s \\n" % (field.label if hasattr(field, 'label') else 'Error', error)
     return msg
+
+
+class SignUpForm(UserCreationForm):
+    birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
+    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'birth_date', 'first_name', 'last_name', 'email', 'password1', 'password2', )

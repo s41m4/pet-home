@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms', 
     'home.apps.HomeConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+SECURE_SSL_REDIRECT = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
@@ -138,6 +139,10 @@ STATICFILES_DIRS = (
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CSRF_COOKIE_SECURE = True #to avoid transmitting the CSRF cookie over HTTP accidentally.
+SESSION_COOKIE_SECURE = True #to avoid transmitting the session cookie over HTTP accidentally.
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

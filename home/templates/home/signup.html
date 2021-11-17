@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title>Sign ip</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,17 +35,17 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form action="{% url 'login' %}" method="post" class="login100-form validate-form">
+				<form action="{% url 'signup' %}" method="post" class="login100-form validate-form">
 					{% csrf_token %}
 					<span class="login100-form-title p-b-70">
-						Welcome Back :)
+						Welcome :)
 					</span>
 					<span class="login100-form-avatar">
 						<img src="{% static 'img/index.jpeg' %}" alt="AVATAR">
 					</span>
-					{% for message in messages %}
+					{% for field in form %}
 							<div class="alert alert-danger" role="alert">
-                                {{message}}
+                                {{field}}
                             </div>
 					{% endfor %}
 
@@ -53,30 +53,53 @@
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
-
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Confirm your password">
+						<input class="input100" type="text" name="first_name">
+						<span class="focus-input100" data-placeholder="First name"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Confirm your password">
+						<input class="input100" type="text" name="last_name">
+						<span class="focus-input100" data-placeholder="Last name"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Confirm your password">
+						<input class="input100" type="date" name="birth_date">
+						<span class="focus-input100" data-placeholder="Birth date"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Confirm your password">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
 					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
 						<input class="input100" type="password" name="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Confirm your password">
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Confirm password"></span>
+					</div>
+
+                    
+
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Sign In
+							Sign up
 						</button>
 					</div>
 					<br />
 					
 				</form>
-				<div class="container-login100-form-btn">
+				<div class="container-login100-form-btn wrap-input100 validate-input m-b-50">
+					<div class="container-login100-form-btn">
 						<button class="lognin100-form-btn">
-							<a href="{% url 'signup' %}">New user ?</a>
+							<a href="{% url 'login' %}">Already have an account ?</a>
 						</button>
+					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
-
-
 	<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
